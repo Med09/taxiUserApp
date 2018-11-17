@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="lsit.texi.user">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" /> -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <application
+        android:name="lsit.texi.user.utils.ApplicationGlobal"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="lsit.texi.user.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="lsit.texi.user.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="lsit.texi.user.LoginOptionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="lsit.texi.user.SignUpActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="lsit.texi.user.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="lsit.texi.user.ForgotActivity"
+            android:screenOrientation="portrait" />
+
+        <receiver
+            android:name="lsit.texi.user.utils.MyTwitterResultReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.twitter.sdk.android.tweetcomposer.UPLOAD_SUCCESS" />
+                <action android:name="com.twitter.sdk.android.tweetcomposer.UPLOAD_FAILURE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name="lsit.texi.user.TripDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="lsit.texi.user.AllTripActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="lsit.texi.user.BookingDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="lsit.texi.user.UserProfileActivity"
+            android:label="@string/title_activity_user_profile"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="lsit.texi.user.TrackTruckActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="lsit.texi.user.TestMapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="lsit.texi.user.ChangePasswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
+
+        <service
+            android:name="com.paypal.android.sdk.payments.PayPalService"
+            android:exported="false" />
+
+        <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
+        <activity
+            android:name="io.card.payment.CardIOActivity"
+            android:configChanges="keyboardHidden|orientation" />
+        <activity android:name="io.card.payment.DataEntryActivity" />
+        <activity android:name="lsit.texi.user.StripeFormActivity" />
+
+ <!--       <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="come.texi.driver" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="lsit.texi.user.utils.MyGcmListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="lsit.texi.user.utils.MyInstanceIDListenerService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>-->
+
+        <service
+            android:name=".push.FCMMessageHandler"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".push.FCMInitializationService"
+            android:exported="false"
+            >
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="lsit.texi.user.utils.RegistrationIntentService"
+            android:exported="false" />
+
+        <activity android:name="lsit.texi.user.RateCardActivity" />
+        <activity android:name="lsit.texi.user.AutocompleteFrgActivity"></activity>
+    </application>
+
+</manifest>
